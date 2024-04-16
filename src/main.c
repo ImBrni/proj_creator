@@ -8,17 +8,36 @@
 
 int minor_version = 0;
 
+struct Template {
+	char* name;
+	char* desc;
+	char* project_file;
+};
+
+struct Template templates[] = {
+	{"c", "Starting c project file","this is a c file"},
+	{"bash", "bash script starter","this is a bash file"},
+};
+
+int templates_num = sizeof(templates) / sizeof(struct Template);
+
 void usage(int exit_code) {
 	PRINT_VERSION
 
 	fputs("\n\
-Usage: [OPTION] ... [TEMPLATE_NAME] ... [FILE] ...\n\
+Usage: [OPTION] ... [TEMPLATE_NAME] \n\
 \n\
-\t-h\t\tPrints out this help message and exits\n\
-\t-v\t\tPrints out program version\n\
-\t-n\t\tGive a custom to the generated file\n\
-\t-o\t\tDo not create project file, only print it to stdout\n\
-", stdout);
+\t-h\tPrints out this help message and exits\n\
+\t-v\tPrints out program version\n\
+\t-n\tGive a custom to the generated file\n\
+\t-o\tDo not create project file, only print it to stdout\n\
+\n\
+Available templates:\n", stdout);
+
+	for(int i = 0; i < templates_num; i++) {
+		printf("\t%s\t%s\n", templates[i].name, templates[i].desc);
+	}
+	putc('\n', stdout);
 
 	exit(exit_code);
 }
@@ -60,9 +79,9 @@ int main(int argc, char** argv) {
 		}
 
 	for (index = optind; index < argc; index++)
-		printf ("Non-option argument %s\n", argv[index]);
+		printf ("Nem opcio a(z): %s\n", argv[index]);
 
-
+	
 
 	return 0;
 }
