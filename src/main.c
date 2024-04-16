@@ -20,7 +20,7 @@ const struct Template templates[] = {
 	{"c", "Starting c project file", "main.c", "#include <stdio.h>\n\nint main(void) {\n\n\tprintf(\"Hello World!\\n\");\n\n\treturn 0;\n}"},
 	{"bash", "bash script starter", "script.sh", "#!/bin/bash\n\nvar=\"Hello World!\"\n\necho \"$var\""},
 	{"python", "python hello world with main", "main.py", "def main():\n\tprint(\"Hello World!\")\n\nif __name__ == \"__main__\":\n\tmain()"},
-	{"go", "golang hello world", "main.go", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello World!\")\n}"},
+	{"golang", "golang hello world", "main.go", "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Hello World!\")\n}"},
 };
 
 int templates_num = sizeof(templates) / sizeof(struct Template);
@@ -114,16 +114,17 @@ int main(int argc, char** argv) {
 	}
 
 	filename = filename == NULL ? templates[wanted].file_name : filename;
+
+	if(access(filename, W_OK) == 0) {
+		printf("%s already exists\n", filename);
+		return 0;
+	}
+
 	FILE* file = fopen(filename, "w");
 
 	if(file == NULL) {
 		fprintf(stderr, "Error getting file handle\n");
 		return 1;
-	}
-
-	if(access(filename, W_OK) == 0) {
-		printf("%s already exists\n", filename);
-		return 0;
 	}
 
 	fprintf(file, "%s\n", templates[wanted].project_file);
