@@ -18,6 +18,7 @@ Custom name for the output file: `proj_creator -n <custom_name_of_file_with_exte
 
 The repository contains a single Makefile, to build the project execute this command:
 `make`
+(The executable will be in the bin folder)
 
 To build and run execute:
 `make run`

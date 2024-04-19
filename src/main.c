@@ -5,9 +5,7 @@
 
 #define PROGRAM_NAME "proj_creator"
 #define VERSION 0.1
-#define PRINT_VERSION printf("%s V%.1lf.%d\n", PROGRAM_NAME, VERSION, minor_version);
-
-int minor_version = 0;
+#define PRINT_VERSION printf("%s V%.1lf\n", PROGRAM_NAME, VERSION);
 
 struct Template {
 	char* name;
