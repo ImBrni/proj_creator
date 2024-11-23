@@ -10,7 +10,7 @@ Print out version number: `proj_creator -v`
 
 Create file with default name: `proj_creator <template>`
 
-Do not create the template just print it to stdou: `proj_creator -o <template>`
+Do not create the template just print it to stdout: `proj_creator -o <template>`
 
 Custom name for the output file: `proj_creator -n <custom_name_of_file_with_extension> <template>`
 
